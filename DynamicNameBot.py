@@ -31,16 +31,17 @@ class MyClient(discord.Client):
         while not self.is_closed():
             for guild in self.guilds:
                 for channel in guild.voice_channels:
-                    for chatter in channel.members:
-                        if(chatter.activity != None and chatter.activity.type.name == 'playing'):
-                            activityList.append(chatter.activity)
-                        else:
-                            activityList.append('Just Chatting')
-                    new_name = str(Counter(activityList).most_common(1)[0][0])
-                    #await channel.edit(name=new_name) #Can only send 2 changes per 10 minutes? So do it every 5 I think
-                    channel2 = self.get_channel(789229582292746253)
-                    await channel2.send(new_name)
-                    activityList.clear()
+                    if(len(channel.members) > 0):
+                        for chatter in channel.members:
+                            if(chatter.activity != None and chatter.activity.type.name == 'playing'):
+                                activityList.append(chatter.activity)
+                            else:
+                                activityList.append('Just Chatting')
+                        new_name = str(Counter(activityList).most_common(1)[0][0])
+                        #await channel.edit(name=new_name) #Can only send 2 changes per 10 minutes? So do it every 5 I think
+                        channel2 = self.get_channel(789229582292746253)
+                        await channel2.send(new_name)
+                        activityList.clear()
                 await asyncio.sleep(5) # task runs every 5 Minutes, temp set to 5 seconds when sending messages instead of updating channel name
 
 
