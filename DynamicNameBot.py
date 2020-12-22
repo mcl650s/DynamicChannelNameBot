@@ -34,7 +34,7 @@ class MyClient(discord.Client):
                     if(len(channel.members) > 0):
                         for chatter in channel.members:
                             if(chatter.activity != None and chatter.activity.type.name == 'playing'):
-                                activityList.append(chatter.activity)
+                                activityList.append(chatter.activity.name)
                             else:
                                 activityList.append('Just Chatting')
                         new_name = str(Counter(activityList).most_common(1)[0][0])
