@@ -24,6 +24,7 @@ class MyClient(discord.Client):
         print('--------------------------------------------------')
         print(f'Logged in as: {self.user.name} {self.user.id}')
         print('--------------------------------------------------')
+        await self.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="Game Activity"))
 
     async def check_game_update(self):
         await self.wait_until_ready()
@@ -38,11 +39,11 @@ class MyClient(discord.Client):
                             else:
                                 activityList.append('Just Chatting')
                         new_name = str(Counter(activityList).most_common(1)[0][0])
-                        #await channel.edit(name=new_name) #Can only send 2 changes per 10 minutes? So do it every 5 I think
-                        channel2 = self.get_channel(789229582292746253)
+                        await channel.edit(name=new_name) #Can only send 2 changes per 10 minutes? So do it every 5 I think
+                        channel2 = self.get_channel(791066555085094923)
                         await channel2.send(new_name)
                         activityList.clear()
-                await asyncio.sleep(5) # task runs every 5 Minutes, temp set to 5 seconds when sending messages instead of updating channel name
+                await asyncio.sleep(300) # task runs every 5 Minutes, temp set to 5 seconds when sending messages instead of updating channel name
 
 
 client = MyClient(intents = intents)
