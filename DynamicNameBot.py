@@ -40,8 +40,8 @@ class MyClient(discord.Client):
                                 activityList.append('Just Chatting')
                         new_name = str(Counter(activityList).most_common(1)[0][0])
                         await channel.edit(name=new_name) #Can only send 2 changes per 10 minutes? So do it every 5 I think
-                        channel2 = self.get_channel(791066555085094923)
-                        await channel2.send(new_name)
+#                        channel2 = self.get_channel(791066555085094923)
+#                        await channel2.send(new_name)
                         activityList.clear()
                 await asyncio.sleep(300) # task runs every 5 Minutes, temp set to 5 seconds when sending messages instead of updating channel name
 
