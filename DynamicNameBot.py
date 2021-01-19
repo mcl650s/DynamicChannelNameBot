@@ -1,17 +1,17 @@
-import os
-
 import discord
 import asyncio
 
 from dotenv import load_dotenv
 from collections import Counter
+from os import getenv
+
 
 intents = discord.Intents.default()
 intents.members = True
 intents.presences = True
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = getenv('DISCORD_TOKEN')
 
 class MyClient(discord.Client):
     def __init__(self, *args, **kwargs):
